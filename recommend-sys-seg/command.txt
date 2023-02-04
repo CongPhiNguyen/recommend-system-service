@@ -1,0 +1,4 @@
+docker build -t flash-111 --tag flash-111 .
+docker build -t frontend-111 frontend
+docker run -it -p 5000:5000 flash-111
+docker run -it -p 8080:8080 frontend-111

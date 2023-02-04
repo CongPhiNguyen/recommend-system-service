@@ -1,0 +1,15 @@
+version: "3.8"
+services:
+  backend-py:
+    build: .
+    container_name: backend-py
+    stdin_open: true
+    tty: true
+    ports:
+      - 5000:5000
+  front-end-static:
+    build: ./frontend
+    container_name: front-end
+    tty: true
+    ports:
+      - 8080:8080
