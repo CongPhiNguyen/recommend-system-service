@@ -18,5 +18,6 @@ from django.urls import path, include
 
 urlpatterns = [
     path("recommend/", include('recommend.urls')),
+    path('movies_lens/', include('movies_lens.urls')),
     path("admin/", admin.site.urls),
 ]

@@ -8,24 +8,39 @@ import {
   UserOutlined,
   VideoCameraOutlined
 } from "@ant-design/icons"
-import { Layout, Menu } from "antd"
+import { Layout, Menu, Card } from "antd"
+import MoviesLens from "./pages/MoviesLens"
 
 const { Header, Sider, Content } = Layout
 const App = () => {
   const [collapsed, setCollapsed] = useState(false)
+  const [key, setCurrentKey] = useState("1")
+
+  const pageNavigate = (key) => {
+    if (key === "1") {
+      return (
+        <div className="overflow-y-auto">
+          <MoviesLens />
+        </div>
+      )
+    }
+  }
   return (
     <Layout>
-      <Sider trigger={null} collapsible collapsed={collapsed}>
-        <div className="text-[white] p-[20px]">Recommend System</div>
+      <Sider theme="light" trigger={null} collapsible collapsed={collapsed}>
+        <div className="p-[20px] text-[#000]">Recommend System</div>
         <Menu
-          theme="dark"
+          theme="light"
           mode="inline"
           defaultSelectedKeys={["1"]}
+          onSelect={(val) => {
+            setCurrentKey(val.key)
+          }}
           items={[
             {
               key: "1",
-              icon: <UserOutlined />,
-              label: "nav 1"
+              icon: <VideoCameraOutlined />,
+              label: "MovieLens Rec"
             },
             {
               key: "2",
@@ -40,7 +55,7 @@ const App = () => {
           ]}
         />
       </Sider>
-      <Layout className="site-layout">
+      <Layout className="site-layout" theme="light">
         <Header
           className="site-layout-background"
           style={{
@@ -55,16 +70,7 @@ const App = () => {
             }
           )}
         </Header>
-        <Content
-          className="site-layout-background"
-          style={{
-            margin: "24px 16px",
-            padding: 24,
-            minHeight: 280
-          }}
-        >
-          Content
-        </Content>
+        <Card>{pageNavigate(key)}</Card>
       </Layout>
     </Layout>
   )
